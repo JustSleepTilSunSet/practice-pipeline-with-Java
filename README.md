@@ -1,6 +1,8 @@
 # practice-pipeline-with-Java
 I hope the project includes basic backend development with spring boot.
 
-✅ Unit test(GET)
-✅ Controller and apis.
-⛏ Unit test(POST)
+✅ Unit test(GET)  
+⛏ Unit test(POST)  
+✅ Controller and apis.  
+❓ Build by docker
+❓ Pipeline( and unit test)
