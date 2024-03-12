@@ -20,18 +20,12 @@ public class HelloWorldController {
     @ResponseBody
     public ResponseEntity<StdResponse> health()  throws Exception{
         try {
-            // healthRes
-                // .setMessage("Health")
-                // .setStatus(StdResConstants.API_SUCCESS);
             StdResponse resObj = res.getSuccess("Health");
             return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(resObj);
         } catch (Exception ex) {
             ex.printStackTrace();
-            // healthRes
-                // .setMessage("Server throws exception.")
-                // .setStatus(StdResConstants.API_FAIL);
             StdResponse resObj = res.getFail("Server throws exception.");
             return ResponseEntity.badRequest()
                 .contentType(MediaType.APPLICATION_JSON)
