@@ -28,7 +28,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Test echo
-      run: echo "hola pipeline"
+      run: |
+          echo "hola pipeline"
+          echo ${{ secrets.MY_SERCRET_VARIABLE }}
+          echo ${{ vars.MY_VARIABLE }}
     - name: Build with Maven
       run: mvn -B package --file demo/pom.xml
 
