@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 @Entity
 @Table(name = "test_table")
 public class TestTable {
+
     @Id
     private Long id;
 

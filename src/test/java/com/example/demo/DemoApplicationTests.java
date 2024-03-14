@@ -7,6 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.example.demo.dto.RecordObject;
 import com.example.demo.enums.StdResConstants;
+import com.example.demo.models.TestTableRepoImpl;
 import com.example.demo.vo.StdResponse;
 import com.google.gson.Gson;
 
@@ -14,7 +15,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,11 +26,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class DemoApplicationTests {
+	@Autowired
+	private TestTableRepoImpl testTableRepoImpl;
+
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -45,6 +50,7 @@ class DemoApplicationTests {
 	@BeforeEach
 	public void setup() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+		testTableRepoImpl.createWithoutExist();
 	}
 
 	@Test
