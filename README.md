@@ -5,7 +5,7 @@ I hope the project includes basic backend development with spring boot.
   
 ✅ Controller and apis.  
   
-❓ Build by docker
+⛏Build by docker(local)
   
 ✅ Pipeline( and unit test)
   
