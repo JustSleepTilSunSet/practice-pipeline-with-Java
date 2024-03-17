@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  practice-learned-spring:
+    container_name: practice-learned-spring
+    image: practice-learned-spring
+    restart: always
+    networks:
+      - devnet
+    ports:
+      - 10022:8080
+
+  mySQLServer:
+    container_name: mySQLServer
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${password}
+      MYSQL_DATABASE: mysqlbase
+      MYSQL_USER: ${user}
+      MYSQL_PASSWORD: ${password}
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - devnet
+volumes:
+  mysql_data:
+networks:
+  devnet:
+    external: true
