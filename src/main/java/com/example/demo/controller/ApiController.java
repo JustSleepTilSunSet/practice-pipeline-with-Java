@@ -11,7 +11,6 @@ import com.example.demo.models.TestTable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:8787/")
 public class ApiController {
@@ -26,6 +25,14 @@ public class ApiController {
             System.out.println(t.getMessage());
         }
         ts.insert(entity);
+        return entity;
+    }
+
+    @PostMapping("/update")
+    public StatusObject updateMethodName(@RequestBody StatusObject entity) {
+        System.out.println(
+                "Received status" + entity.getStatus() + " Message: " + entity.getMessage() + "Id:" + entity.getId());
+        ts.update(entity);
         return entity;
     }
 

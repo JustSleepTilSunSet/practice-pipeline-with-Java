@@ -9,6 +9,8 @@ services:
       - devnet
     ports:
       - 10022:8080
+    volumes:
+      - $PWD:/workdir/app
 
   mySQLServer:
     container_name: mySQLServer

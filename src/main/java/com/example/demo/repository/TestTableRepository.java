@@ -12,10 +12,11 @@ import com.example.demo.models.TestTable;
 @Repository
 @EnableJpaRepositories
 public interface TestTableRepository extends JpaRepository<TestTable, Long> {
+
     List<TestTable> findAll();
+
     <S extends TestTable> S save(S entity);
 
-    @Query(value = "SELECT max(id) FROM test_table",nativeQuery = true)
+    @Query(value = "SELECT max(id) FROM test_table", nativeQuery = true)
     public Long getMaxId();
-
 }

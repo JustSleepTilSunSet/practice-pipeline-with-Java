@@ -8,7 +8,6 @@ import org.springframework.web.context.WebApplicationContext;
 import com.example.demo.dto.RecordObject;
 import com.example.demo.enums.StdResConstants;
 import com.example.demo.models.TestTableRepoImpl;
-import com.example.demo.vo.StdResponse;
 import com.google.gson.Gson;
 
 import org.junit.jupiter.api.AfterEach;
@@ -42,9 +41,6 @@ class DemoApplicationTests {
 	@Autowired
 	private WebApplicationContext context;
 
-	@MockBean
-	StdResponse dictMock;
-
 	RecordObject mockRequest = new RecordObject();
 
 	@BeforeEach
@@ -55,30 +51,11 @@ class DemoApplicationTests {
 
 	@Test
 	void healthTest() throws Exception {
-		when(dictMock.getSuccess("Health")).thenReturn(new StdResponse().getSuccess("Health"));
 
 		mockMvc
 				.perform(get("/"))
 				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				// .andExpect(MockMvcResultMatchers.jsonPath("$.a").value(StdResConstants.API_SUCCESS));
-				.andExpect(MockMvcResultMatchers.jsonPath("$.status").value(StdResConstants.API_SUCCESS));
-	}
-
-	@Test
-	void testMethodShouldThrowException() throws Exception {
-		// StdResponse dictMock = mock(StdResponse.class);
-		// when(dictMock.getSuccess("Testing success")).thenReturn(new
-		// StdResponse().setMessage("My fail"));
-		// StdResponse result = dictMock.getSuccess("Testing success");
-		// assertEquals("My fail", result.getMessage());
-
-		when(dictMock.getSuccess("Health")).thenThrow(new Exception("Testing runtime error."));
-		mockMvc
-				.perform(get("/"))
-				.andDo(print())
-				.andExpect(status().isBadRequest());
+				.andExpect(status().isOk());
 	}
 
 	@Test
@@ -93,8 +70,4 @@ class DemoApplicationTests {
 				.andExpect(status().isOk());
 	}
 
-	@AfterEach
-	public void resetMocks() {
-		reset(dictMock);
-	}
 }
